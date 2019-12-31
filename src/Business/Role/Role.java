@@ -1,0 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Business.Role;
+
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author Nidhi Goyal
+ */
+public abstract class Role {
+    private final RoleType role;
+    
+    public Role(RoleType role) {
+        this.role = role;
+    }
+
+    public enum RoleType {
+        Admin("Admin"),
+        Doctor("Doctor"),
+        EventOrganizer("EventOrganizer"),
+        LabAssistant("Lab Assistant"),
+        NGOStaff("NGOStaff"),
+        NGOSupervisor("NGOSupervisor"),
+        Patient("Patient"),
+        Pharmacist("Pharmacist"),
+        SupportPerson("SupportPerson");
+        
+        private String value;
+        private RoleType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+    
+    public RoleType getRoleType() {
+        return this.role;
+    }
+    
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
+            UserAccount account, 
+            Organization organization, 
+            Enterprise enterprise, 
+            EcoSystem business);
+}
